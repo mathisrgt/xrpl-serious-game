@@ -15,6 +15,8 @@ export default defineNuxtConfig({
     TESTNET_wssExplorer: process.env.TESTNET_WSS_EXPLORER,
     MAINNET_wssExplorer: process.env.MAINNET_WSS_EXPLORER,
 
+    jwtSecret: process.env.JWT_SECRET,
+
     // Keys within public are also exposed client-side
     public: {
       apiBase: '/api'
