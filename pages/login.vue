@@ -23,6 +23,40 @@
   </UForm>
     </UContainer>
 
+    <!-- Register Form -->
+    <UCard class="max:w-sm space-y-4">
+      <template #header>
+        <p class="font-title">Register</p>
+    </template>
+    
+    <UForm :schema="schema" :state="state" class="space-y-4" @submit="DoLogin">
+        
+    <UFormGroup label="First name" name="firstname">
+      <UInput /> 
+      <!-- v-model="state.firstname" -->
+    </UFormGroup>
+
+    <UFormGroup label="Last name" name="firstname">
+      <UInput /> 
+      <!-- v-model="state.firstname" -->
+    </UFormGroup>
+
+    <UFormGroup label="Email" name="email">
+      <UInput v-model="state.email" />
+    </UFormGroup>
+
+      <!-- Password Input Field -->
+    <UFormGroup label="Password" name="password">
+      <UInput v-model="state.password" type="password" />
+    </UFormGroup>
+
+    <!-- Submit Button -->
+    <UButton type="submit">
+      Register
+    </UButton>
+  </UForm>
+    </UCard>
+
     <!-- Debug: Display email and password (to be removed) -->
     <pre>{{ email }} {{ password }}</pre>
   </div>
@@ -34,7 +68,7 @@ import { ref, inject, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '#ui/types'
-import alex_first_api from '~/server/client'
+// import alex_first_api from '~/server/client'
 
 // Define form schema
 const schema = object({
@@ -52,9 +86,9 @@ const state = reactive({
   password: undefined
 })
 
-async function onSubmit (event: FormSubmitEvent<Schema>) {
-  // Do something with event.data
-}
+// async function onSubmit (event: FormSubmitEvent<Schema>) {
+//   // Do something with event.data
+// }
 
 
 // Setup routing
