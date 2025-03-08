@@ -23,40 +23,6 @@
   </UForm>
     </UContainer>
 
-    <!-- Register Form -->
-    <UCard class="max:w-sm space-y-4">
-      <template #header>
-        <p class="font-title">Register</p>
-    </template>
-    
-    <UForm :schema="schema" :state="state" class="space-y-4" @submit="DoLogin">
-        
-    <UFormGroup label="First name" name="firstname">
-      <UInput /> 
-      <!-- v-model="state.firstname" -->
-    </UFormGroup>
-
-    <UFormGroup label="Last name" name="firstname">
-      <UInput /> 
-      <!-- v-model="state.firstname" -->
-    </UFormGroup>
-
-    <UFormGroup label="Email" name="email">
-      <UInput v-model="state.email" />
-    </UFormGroup>
-
-      <!-- Password Input Field -->
-    <UFormGroup label="Password" name="password">
-      <UInput v-model="state.password" type="password" />
-    </UFormGroup>
-
-    <!-- Submit Button -->
-    <UButton type="submit">
-      Register
-    </UButton>
-  </UForm>
-    </UCard>
-
     <!-- Debug: Display email and password (to be removed) -->
     <pre>{{ email }} {{ password }}</pre>
   </div>
