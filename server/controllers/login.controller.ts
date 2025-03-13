@@ -10,7 +10,6 @@ export const login = defineEventHandler(async (event) => {
 
     const user = await User.findOne({ email });
     if (!user) {
-        console.log(`❌ User ${email} not found`);
         throw createError({ statusCode: 401, statusMessage: 'Invalid credentials' });
     }
 
