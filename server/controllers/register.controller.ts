@@ -1,6 +1,7 @@
 import User from '../models/user.model';
 import jwt from 'jsonwebtoken';
 import { useRuntimeConfig } from '#imports';
+import bcrypt from 'bcryptjs';
 import { setCookie } from 'h3';
 
 /**
@@ -23,7 +24,8 @@ export const register = defineEventHandler(async (event) => {
             throw createError({ statusCode: 400, statusMessage: 'User already exists' });
         }
 
-        const newUser = new User({ firstName, lastName, email, password, role });
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({ firstName, lastName, email, password: hashedPassword, role });
         await newUser.save();
 
         const token = jwt.sign({ userId: newUser._id, email: newUser.email, role: newUser.role }, config.jwtSecret, { expiresIn: '5h' });
@@ -36,6 +38,7 @@ export const register = defineEventHandler(async (event) => {
 
         return {
             message: 'User registered successfully',
+            token,
             user: {
                 id: newUser._id.toString(),
                 email: newUser.email,

@@ -4,15 +4,14 @@
             <h2 class="text-2xl font-semibold text-center mb-6">Welcome back!</h2>
 
             <UForm @submit.prevent="submit" class="space-y-4 mb-6">
-                <UInput v-model="form.email" label="Email" type="email" placeholder="Enter your email" required
-                    class="w-full" />
-
-                <UInput v-model="form.password" label="Password" type="password" placeholder="Enter password" required
-                    class="w-full" />
+                <UInput v-model="form.email" label="Email" type="email" placeholder="Enter your email" required class="w-full" />
+                <UInput v-model="form.password" label="Password" type="password" placeholder="Enter password" required class="w-full" />
 
                 <UButton type="submit" color="primary" :loading="loading" block>
                     Login
                 </UButton>
+
+                <p v-if="errorMessage" class="text-red-500 text-center">{{ errorMessage }}</p>
             </UForm>
 
             <div class="text-sm text-center space-x-2">
@@ -24,14 +23,34 @@
 </template>
 
 <script setup>
-import { UForm } from '#components';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const form = ref({ email: '', password: '' });
 const loading = ref(false);
+const errorMessage = ref('');
 
 const submit = async () => {
     loading.value = true;
-    loading.value = false;
+    errorMessage.value = '';
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(form.value),
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.statusMessage || 'Login failed');
+
+        localStorage.setItem('auth_token', data.token);
+        router.push('/dashboard');
+    } catch (error) {
+        errorMessage.value = error.message;
+    } finally {
+        loading.value = false;
+    }
 };
 </script>
