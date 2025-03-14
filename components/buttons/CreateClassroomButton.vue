@@ -11,9 +11,8 @@
                         <h2 class="text-lg font-bold">Create a new classroom</h2>
                     </template>
 
-                    <UForm @submit.prevent="submitClassroom" class="flex flex-col gap-4">
+                    <UForm @submit.prevent="submitClassroom" :state="classroom" class="flex flex-col gap-4">
                         <UInput v-model="classroom.name" label="Classroom Name" required placeholder="Enter name" />
-                        <UTextarea v-model="classroom.description" label="Description" placeholder="Enter description" />
 
                         <div class="flex justify-end">
                             <UButton type="submit" color="primary" :loading="loading" label="Create" />
@@ -31,12 +30,13 @@ const isModalOpen = ref(false);
 const loading = ref(false);
 const classroom = ref({
     name: '',
-    description: ''
 });
 
 const emit = defineEmits(['classroomCreated']);
 
 const submitClassroom = async () => {
+    console.log("Submitting classroom: ", classroom.value);
+
     loading.value = true;
 
     try {
@@ -51,7 +51,7 @@ const submitClassroom = async () => {
         const newClassroom = await response.json();
         emit('classroomCreated', newClassroom);
         isModalOpen.value = false;
-        classroom.value = { name: '', description: '' };
+        classroom.value = { name: '' };
     } catch (error) {
         console.error('Error:', error);
     } finally {

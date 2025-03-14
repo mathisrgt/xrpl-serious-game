@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Classroom from '../models/classroom.model';
 import User from '../models/user.model';
 import { defineEventHandler, readBody, getQuery, createError } from 'h3';
@@ -69,7 +70,9 @@ export const updateClassroom = defineEventHandler(async (event) => {
  * Delete a classroom by ID
  */
 export const deleteClassroom = defineEventHandler(async (event) => {
-    const { id } = getQuery(event);
+    const id = event.context.params?.id;
+
+    console.log("Deleting classroom: ", id);
 
     const deletedClassroom = await Classroom.findByIdAndDelete(id);
 

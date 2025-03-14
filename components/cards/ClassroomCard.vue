@@ -1,7 +1,7 @@
 <template>
     <UCard class="w-sm">
         <template #header>
-            <h3>{{ classroom.title }}</h3>
+            <h3>{{ classroom.name }}</h3>
         </template>
         <p>{{ classroom.description || "No description available." }}</p>
         <template #footer>
@@ -10,20 +10,22 @@
                     <UIcon name="i-heroicons-arrow-right" />
                     Open
                 </UButton>
-                <UButton color="error">
-                    <UIcon name="i-heroicons-trash" />
-                    Delete
-                </UButton>
+                <DeleteButton :id="classroom._id" type="classrooms" @deleted="removeClassroom" />
             </div>
         </template>
     </UCard>
 </template>
 
 <script setup>
-defineProps({
-    classroom: {
-        type: Object,
-        required: true
-    }
+import DeleteButton from '@/components/buttons/DeleteButton.vue';
+
+const props = defineProps({
+    classroom: { type: Object, required: true }
 });
+
+const emit = defineEmits(['deleted']);
+
+const removeClassroom = (id) => {
+    emit('deleted', id);
+};
 </script>
