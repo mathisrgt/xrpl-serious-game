@@ -1,20 +1,16 @@
 <template>
     <UCard class="w-sm">
         <template #header>
-            <h3>{{ course.title }}</h3>
+            <h3>Activity</h3>
         </template>
-        <p>{{ course.description || "No description available." }}</p>
+        <p>{{ activity.content }}</p>
         <template #footer>
             <div class="flex gap-2">
                 <UButton>
-                    <UIcon name="i-heroicons-arrow-right" />
-                    Continue
+                    <UIcon name="i-heroicons-play" />
+                    Start
                 </UButton>
-                <UButton color="warning">
-                    <UIcon name="i-heroicons-pencil" />
-                    Edit
-                </UButton>
-                <DeleteButton :id="course._id" type="courses" @deleted="handleDelete" />
+                <DeleteButton :id="activity._id" type="activities" @deleted="handleDelete" />
             </div>
         </template>
     </UCard>
@@ -24,7 +20,7 @@
 import DeleteButton from '@/components/buttons/DeleteButton.vue';
 
 defineProps({
-    course: {
+    activity: {
         type: Object,
         required: true
     }

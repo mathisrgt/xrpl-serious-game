@@ -3,7 +3,7 @@
         <UCard class="w-sm flex items-center justify-center p-4">
             <CreateClassroomButton @classroomCreated="handleClassroomCreated" />
         </UCard>
-        <ClassroomCard v-for="classroom in classrooms" :key="classroom._id" :classroom="classroom" />
+        <ClassroomCard v-for="classroom in classrooms" :key="classroom._id" :classroom="classroom" @deleted="removeClassroom" />
     </div>
 </template>
 
@@ -34,6 +34,13 @@ const fetchClassrooms = async () => {
  */
 const handleClassroomCreated = (newClassroom) => {
     classrooms.value.push(newClassroom);
+};
+
+/**
+ * Remove a deleted classroom from the list
+ */
+const removeClassroom = (id) => {
+    classrooms.value = classrooms.value.filter(classroom => classroom._id !== id);
 };
 
 onMounted(fetchClassrooms);

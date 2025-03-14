@@ -5,7 +5,7 @@ import User from '../models/user.model';
  * Get all users
  */
 export const getAllUsers = defineEventHandler(async () => {
-    const users = await User.find().select('-password'); // Exclude password
+    const users = await User.find().select('-password');
     return users;
 });
 

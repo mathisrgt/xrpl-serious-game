@@ -12,7 +12,7 @@
                     <h2 class="text-lg font-bold">Create a new course</h2>
                 </template>
 
-                <UForm @submit.prevent="submitCourse" class="flex flex-col gap-4">
+                <UForm @submit.prevent="submitCourse" :state="course" class="flex flex-col gap-4">
                     <UInput v-model="course.title" label="Course Title" required placeholder="Enter title" />
                     <UTextarea v-model="course.description" label="Description" placeholder="Enter course description" />
 
