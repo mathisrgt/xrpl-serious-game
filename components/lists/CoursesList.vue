@@ -1,18 +1,16 @@
 <template>
     <div class="flex flex-wrap gap-8">
-        <CourseCard v-for="course in courses" :course="course" :key="course.id" />
         <UCard class="w-sm flex items-center justify-center p-4">
-            <UButton>
-                <UIcon name="i-heroicons-plus" />
-                Create a new course
-            </UButton>
+            <CreateCourseButton @courseCreated="handleCourseCreated" />
         </UCard>
+        <CourseCard v-for="course in courses" :course="course" :key="course.id" />
     </div>
 </template>
 <script setup>
 import { ref } from 'vue';
 import { UCard } from '#components';
 import CourseCard from '@/components/cards/CourseCard.vue';
+import CreateCourseButton from '@/components/buttons/CreateCourseButton.vue';
 
 const courses = ref([
     { id: 1, title: "Course #1", progress: 20, description: "Lorem ipsum dolor sit amet." },
