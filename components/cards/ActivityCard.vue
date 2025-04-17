@@ -1,9 +1,9 @@
 <template>
-    <UCard class="w-sm">
+    <UCard class="w-full">
         <template #header>
-            <h3>Activity</h3>
+            <h3>{{ activity.name }}</h3>
         </template>
-        <p>{{ activity.content }}</p>
+        <p>{{ activity.description }}</p>
         <template #footer>
             <div class="flex gap-2">
                 <UButton href="/activity">

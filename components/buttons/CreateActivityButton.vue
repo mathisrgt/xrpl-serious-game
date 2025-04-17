@@ -2,28 +2,31 @@
     <div>
         <UModal v-model="isModalOpen">
             <UButton @click="isModalOpen = true">
-            <UIcon name="i-heroicons-plus" />
-            Create a new activity
-        </UButton>
-        
+                <UIcon name="i-heroicons-plus" />
+                Create a new activity
+            </UButton>
+
             <template #content>
-            <UCard>
-                <template #header>
-                    <h2 class="text-lg font-bold">Create a New Activity</h2>
-                </template>
+                <UCard>
+                    <template #header>
+                        <h2 class="text-lg font-bold">New Activity</h2>
+                    </template>
 
-                <UForm @submit.prevent="submitActivity" class="space-y-4">
-                    <UInput v-model="activity.content" label="Activity Content" required placeholder="Enter content" />
-
-                    <div class="flex justify-end gap-2">
-                        <UButton color="gray" @click="isModalOpen = false">Cancel</UButton>
-                        <UButton type="submit" color="primary" :loading="loading">
-                            Create Activity
-                        </UButton>
-                    </div>
-                </UForm>
-            </UCard>
-        </template>
+                    <UForm @submit.prevent="submitActivity" class="space-y-4">
+                        <!-- <UInput v-model="activity.content" label="Activity Content" required placeholder="Enter content" /> -->
+                        <div class="flex flex-col gap-2">
+                            <UInput label="Activity name" required placeholder="Enter the name" />
+                            <UTextarea label="Activity description" required
+                                placeholder="Enter a description of this activity" />
+                        </div>
+                        <div class="flex justify-end gap-2">
+                            <UButton type="submit" color="primary" :loading="loading">
+                                Create
+                            </UButton>
+                        </div>
+                    </UForm>
+                </UCard>
+            </template>
         </UModal>
     </div>
 </template>

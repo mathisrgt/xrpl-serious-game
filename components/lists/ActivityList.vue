@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-wrap gap-8">
-        <UCard class="w-sm flex items-center justify-center p-4">
+    <div class="grid grid-cols-2 gap-6">
+        <UCard class="w-full flex items-center justify-center p-4">
             <CreateActivityButton @activityCreated="handleActivityCreated" />
         </UCard>
 
@@ -11,8 +11,8 @@
             @deleted="removeActivity" 
         /> -->
 
-        <ActivityCard :activity="{content: 'Blablabla'}"/>
-        <ActivityCard :activity="{content: 'Blablabla'}"/>
+        <ActivityCard :activity="{name: 'Memo', description: 'Each student has to send a transaction to a solution account send in the memo of a transaction sent to his account.', content: 'Hey 👋 Welcome to this activity. The goal of this activity is for you to discover the memo feature in a transaction on the XRP Ledger.'}"/>
+        <ActivityCard :activity="{name: 'Multisig', description: 'Students have to work together to setup a multisig and send a transaction to a solution account.', content: 'Hey 👋 Welcome to this activity. You are about to create a multisig account with different signers from your classroom.'}"/>
     </div>
 </template>
 

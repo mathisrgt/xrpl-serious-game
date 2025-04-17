@@ -14,7 +14,6 @@
                 <p>Are you sure you want to delete this {{ formattedType }}?</p>
 
                 <div class="flex justify-end gap-4 mt-4">
-                    <UButton color="gray" @click="closeModal">Cancel</UButton>
                     <UButton color="error" :loading="loading" @click="deleteItem">Delete</UButton>
                 </div>
                 </UCard>
