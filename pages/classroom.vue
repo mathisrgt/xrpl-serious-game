@@ -13,7 +13,7 @@
                 </p>
             </div>
             <div class="flex flex-col gap-4">
-                <h2 class="text-xl font-bold">Students</h2>
+                <h2 class="text-xl font-bold flex gap-2">Students <AddStudentButton /></h2>
                 <StudentList />
             </div>
             <div class="flex flex-col gap-4">
@@ -24,6 +24,7 @@
 </template>
 
 <script setup>
+import AddStudentButton from '~/components/buttons/AddStudentButton.vue';
 import ActivityList from '~/components/lists/ActivityList.vue';
 import StudentList from '~/components/lists/StudentList.vue';
 

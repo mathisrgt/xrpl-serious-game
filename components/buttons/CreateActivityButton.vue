@@ -1,7 +1,7 @@
 <template>
     <div>
         <UModal v-model="isModalOpen">
-            <UButton @click="isModalOpen = true">
+            <UButton @click="isModalOpen=true" color="neutral" variant="outline">
                 <UIcon name="i-heroicons-plus" />
             </UButton>
 

@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui'],
+  modules: ['@nuxt/ui', '@nuxt/image'],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     mongodbUri: process.env.MONGODB_URI,
