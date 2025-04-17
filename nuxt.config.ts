@@ -6,6 +6,6 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     mongodbUri: process.env.MONGODB_URI,
-    jwtSecret: process.env.JWT_SECRET,
+    // jwtSecret: process.env.JWT_SECRET,
   },
 })
