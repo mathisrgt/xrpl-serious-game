@@ -6,7 +6,7 @@
         <p>{{ activity.content }}</p>
         <template #footer>
             <div class="flex gap-2">
-                <UButton>
+                <UButton href="/activity">
                     <UIcon name="i-heroicons-play" />
                     Start
                 </UButton>

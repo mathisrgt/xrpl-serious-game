@@ -4,12 +4,15 @@
             <CreateActivityButton @activityCreated="handleActivityCreated" />
         </UCard>
 
-        <ActivityCard 
+        <!-- <ActivityCard 
             v-for="activity in activities" 
             :activity="activity" 
             :key="activity._id" 
             @deleted="removeActivity" 
-        />
+        /> -->
+
+        <ActivityCard :activity="{content: 'Blablabla'}"/>
+        <ActivityCard :activity="{content: 'Blablabla'}"/>
     </div>
 </template>
 

@@ -12,7 +12,8 @@
                     </template>
 
                     <UForm @submit.prevent="submitClassroom" :state="classroom" class="flex flex-col gap-4">
-                        <UInput v-model="classroom.name" label="Classroom Name" required placeholder="Enter name" />
+                        <UInput v-model="classroom.name" label="Classroom name" required placeholder="Enter name" />
+                        <UTextarea v-model="classroom.description" label="Classroom description" required placeholder="Enter description" />
 
                         <div class="flex justify-end">
                             <UButton type="submit" color="primary" :loading="loading" label="Create" />

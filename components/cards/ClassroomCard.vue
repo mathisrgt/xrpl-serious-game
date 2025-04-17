@@ -1,12 +1,12 @@
 <template>
     <UCard class="w-sm">
         <template #header>
-            <h3>{{ classroom.name }}</h3>
+            <h3 class="font-bold">{{ classroom.name }}</h3>
         </template>
         <p>{{ classroom.description || "No description available." }}</p>
         <template #footer>
             <div class="flex gap-2">
-                <UButton>
+                <UButton href="/classroom">
                     <UIcon name="i-heroicons-arrow-right" />
                     Open
                 </UButton>

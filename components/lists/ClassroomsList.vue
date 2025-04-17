@@ -3,7 +3,9 @@
         <UCard class="w-sm flex items-center justify-center p-4">
             <CreateClassroomButton @classroomCreated="handleClassroomCreated" />
         </UCard>
-        <ClassroomCard v-for="classroom in classrooms" :key="classroom._id" :classroom="classroom" @deleted="removeClassroom" />
+        <!-- <ClassroomCard v-for="classroom in classrooms" :key="classroom._id" :classroom="classroom" @deleted="removeClassroom" /> -->
+        <ClassroomCard :classroom="{name: 'ESGI Course', description: 'Tech workshop during ESGI course'}" /> 
+        <ClassroomCard :classroom="{name: 'IE Madrid March 2025', description: 'Tech workshop during IE Madrid Study Trip'}" />         
     </div>
 </template>
 

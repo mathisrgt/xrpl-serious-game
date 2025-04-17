@@ -1,6 +1,6 @@
 import { defineEventHandler, getQuery, readBody, createError } from 'h3';
 import Activity from '../models/activity.model';
-import mongoose from 'mongoose';
+
 
 /**
  * Get all activities
