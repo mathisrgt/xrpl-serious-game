@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-wrap gap-8">
-        <UCard class="w-sm flex items-center justify-center p-4">
+    <div class="grid grid-cols-3 gap-4">
+        <UCard class="w-full flex items-center justify-center p-4">
             <CreateClassroomButton @classroomCreated="handleClassroomCreated" />
         </UCard>
         <!-- <ClassroomCard v-for="classroom in classrooms" :key="classroom._id" :classroom="classroom" @deleted="removeClassroom" /> -->

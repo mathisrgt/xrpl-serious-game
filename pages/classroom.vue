@@ -1,9 +1,9 @@
 <template>
     <div class="flex flex-col gap-6 p-10 min-h-screen bg-gray-100 overflow-y-auto">
-        <div class="w-2/3 space-y-4 mx-auto">
-            <UButton color="neutral" variant="soft" size="lg" href="/dashboard">
+        <div class="w-2/3 space-y-8 mx-auto">
+            <!-- <UButton color="neutral" variant="soft" size="lg" href="/dashboard">
                 <UIcon name="bx:left-arrow" />
-            </UButton>
+            </UButton> -->
             <div class="space-y-2">
                 <h1 class="text-2xl font-bold">IE Madrid March 2025
                     <UIcon name="bx:pencil" />
@@ -17,7 +17,6 @@
                 <StudentList />
             </div>
             <div class="flex flex-col gap-4">
-                <h2 class="text-xl font-bold">Activities</h2>
                 <ActivityList />
             </div>
         </div>

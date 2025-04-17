@@ -1,5 +1,5 @@
 <template>
-    <UCard class="w-sm">
+    <UCard class="w-full">
         <template #header>
             <h3 class="font-bold">{{ classroom.name }}</h3>
         </template>

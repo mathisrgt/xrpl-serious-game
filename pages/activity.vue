@@ -1,9 +1,9 @@
 <template>
     <div class="flex flex-col gap-6 p-10 min-h-screen bg-gray-100">
         <div class="w-2/3 mx-auto space-y-6">
-            <UButton color="neutral" variant="soft" size="lg" href="/dashboard">
+            <!-- <UButton color="neutral" variant="soft" size="lg" href="/dashboard">
                 <UIcon name="bx:left-arrow" />
-            </UButton>
+            </UButton> -->
             <div class="space-y-2">
                 <h1 class="text-2xl font-bold">Multisig
                     <UIcon name="bx:pencil" />

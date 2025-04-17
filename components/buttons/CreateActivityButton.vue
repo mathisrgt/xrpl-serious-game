@@ -3,7 +3,6 @@
         <UModal v-model="isModalOpen">
             <UButton @click="isModalOpen = true">
                 <UIcon name="i-heroicons-plus" />
-                Create a new activity
             </UButton>
 
             <template #content>
