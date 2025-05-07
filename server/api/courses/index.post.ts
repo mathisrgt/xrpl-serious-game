@@ -1,2 +1,2 @@
-import { createCourse } from '@/server/controllers/course.controller';
+import { createCourse } from '~/server/controllers/content.controller';
 export default createCourse;

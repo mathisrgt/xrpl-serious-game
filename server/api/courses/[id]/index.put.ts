@@ -1,2 +1,2 @@
-import { updateCourse } from '@/server/controllers/course.controller';
+import { updateCourse } from '~/server/controllers/content.controller';
 export default updateCourse;

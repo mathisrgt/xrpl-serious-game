@@ -1,2 +1,2 @@
-import { getAllCourses } from '@/server/controllers/course.controller';
+import { getAllCourses } from '@/server/controllers/content.controller';
 export default getAllCourses;

@@ -82,3 +82,21 @@ export const deleteActivity = defineEventHandler(async (event) => {
 
     return { message: 'Activity deleted successfully' };
 });
+
+/**
+ * Generate an activity for a specific type
+ */
+export const generateActivity = defineEventHandler(async (event) => {
+    const { type, name, description, students } = getQuery(event);
+
+    return { };
+});
+
+/**
+ * Watch activities of a specific type
+ */
+export const watchActivities = defineEventHandler(async (event) => {
+    const { type } = getQuery(event);
+
+    return { };
+});

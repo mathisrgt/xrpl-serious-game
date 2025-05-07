@@ -1,2 +1,2 @@
-import { deleteCourse } from '@/server/controllers/course.controller';
+import { deleteCourse } from '~/server/controllers/content.controller';
 export default deleteCourse;

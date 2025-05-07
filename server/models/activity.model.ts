@@ -1,10 +1,23 @@
 import mongoose from "mongoose";
 
 const ActivitySchema = new mongoose.Schema({
-    content: { type: String, required: true },
-    grades: [{ user: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, submission: { type: String }, grade: { type: Number, min: 0, max: 100 } }],
-    status: [{ user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, status: { type: String, enum: ['notStarted', 'inProgress', 'completed'] } }]
-}, { timestamps: true });
+    content: { type: mongoose.Schema.Types.ObjectId, ref: 'Content' },
+    classroom: { type: mongoose.Schema.Types.ObjectId, ref: 'Classroom' },
+    wallets: [{
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        pubkey: String,
+        privkey: String
+    }],
+    grades: [{
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        grade: { type: Number }
+    }],
+    status: [{
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        state: { type: String, enum: ['done', 'inProgress', 'notStarted'], default: 'notStarted' }
+    }],
+    metaData: mongoose.Schema.Types.Mixed
+}, { timestamps: true })
 
 ActivitySchema.index({ course: 1, student: 1 });
 

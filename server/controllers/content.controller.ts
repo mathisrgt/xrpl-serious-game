@@ -1,5 +1,5 @@
 import { defineEventHandler, getQuery, readBody, createError } from 'h3';
-import Course from '../models/course.model';
+import Course from '../models/content.model';
 
 /**
  * Get all courses
