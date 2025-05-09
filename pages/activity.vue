@@ -48,6 +48,9 @@
                         </template>
                     </UCollapsible>
 
+                    <hr />
+                    <p class="font-bold">{{ content.name }}</p>
+                    <p >{{ content.description }}</p>
                     <div v-if="content.data">
                         <div v-for="(section, i) in content.data" :key="i" class="mb-4">
                             <p class="font-bold" v-if="section.type === 'title'">{{ section.value }}</p>
