@@ -8,7 +8,7 @@
                 <p>Understand how works memos and how to use them on the XRP Ledger.</p>
                 <!-- <UIcon name="bx:pencil" /> -->
             </div>
-            
+
             <UButton v-if="!showActivity" label="Start the activity" @click="showActivity = true" />
             <div v-else class="space-y-6">
                 <hr />
@@ -25,19 +25,25 @@
                             has been created just for you!
                         </p>
                         <template #content>
-                            <div class="grid grid-cols-2 gap-4 border-2 border-gray-200 rounded p-6">
-                                <p class="font-bold">Classic address</p>
-                                <code class="bg-white p-3 rounded-lg text-sm">command line</code>
-                                <p class="font-bold">Public key</p>
-                                <code class="bg-white p-3 rounded-lg text-sm">command line</code>
-                                <p class="font-bold">Private key</p>
-                                <div class="w-full block">
-                                    <code
-                                        class="bg-white p-3 rounded-lg text-sm w-full">{{ showPrivateKey ? privateKey : '••••••••••••••••••' }}</code>
-                                    <UButton color="gray" variant="ghost" size="xs" icon
-                                        @click="showPrivateKey = !showPrivateKey">
-                                        <UIcon :name="showPrivateKey ? 'i-heroicons-eye-slash' : 'i-heroicons-eye'" />
-                                    </UButton>
+                            <div class="space-y-4 border-2 border-gray-200 rounded-lg p-6">
+                                <UAlert color="error" variant="subtle" title="Important"
+                                    description="Do not use this wallet for mainnet transactions. The private key is not securly stored."
+                                    icon="i-lucide-triangle-alert" />
+                                <div class="grid grid-cols-2 gap-4">
+                                    <p class="font-bold">Classic address</p>
+                                    <code class="bg-white p-3 rounded-lg text-sm">command line</code>
+                                    <p class="font-bold">Public key</p>
+                                    <code class="bg-white p-3 rounded-lg text-sm">command line</code>
+                                    <p class="font-bold">Private key</p>
+                                    <div class="mt-2">
+                                        <code
+                                            class="bg-white p-3 rounded-lg text-sm w-full">{{ showPrivateKey ? privateKey : '••••••••••••••••••' }}</code>
+                                        <UButton color="gray" variant="ghost" size="xs" icon
+                                            @click="showPrivateKey = !showPrivateKey">
+                                            <UIcon
+                                                :name="showPrivateKey ? 'i-heroicons-eye-slash' : 'i-heroicons-eye'" />
+                                        </UButton>
+                                    </div>
                                 </div>
                             </div>
                         </template>
@@ -54,7 +60,7 @@
                         <UProgress />
                     </div>
                 </div>
-                <UButton label="Next" :disabled class="w-fit" color="neutral" />
+                <UButton label="Next" :disabled class="w-fit" color="neutral" variant="outline" />
             </div>
         </div>
     </div>
