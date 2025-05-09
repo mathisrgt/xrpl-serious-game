@@ -1,85 +1,83 @@
-import { defineEventHandler, getQuery, readBody, createError } from 'h3';
-import Course from '../models/content.model';
+import { defineEventHandler, getQuery, readBody, createError } from 'h3'
+import Content from '../models/content.model'
 
 /**
- * Get all courses
+ * Get all content items
  */
-export const getAllCourses = defineEventHandler(async () => {
-    const courses = await Course.find().populate('classrooms').populate('activities');
-    return courses;
-});
+export const getAllContents = defineEventHandler(async () => {
+  const contents = await Content.find().populate('relatedContents')
+  return contents
+})
 
 /**
- * Get a specific course by ID
+ * Get a specific content by ID
  */
-export const getCourseById = defineEventHandler(async (event) => {
-    const { id } = getQuery(event);
+export const getContentById = defineEventHandler(async (event) => {
+  const { id } = getQuery(event)
 
-    const course = await Course.findById(id).populate('classrooms').populate('activities');
+  const content = await Content.findById(id).populate('relatedContents')
 
-    if (!course) {
-        throw createError({ statusCode: 404, statusMessage: 'Course not found' });
-    }
+  if (!content) {
+    throw createError({ statusCode: 404, statusMessage: 'Content not found' })
+  }
 
-    return course;
-});
+  return content
+})
 
 /**
- * Create a new course
+ * Create a new content item
  */
-export const createCourse = defineEventHandler(async (event) => {
-    const body = await readBody(event);
+export const createContent = defineEventHandler(async (event) => {
+  const body = await readBody(event)
 
-    if (!body.title) {
-        throw createError({ statusCode: 400, statusMessage: 'Course title is required' });
-    }
+  if (!body.name || !body.type) {
+    throw createError({ statusCode: 400, statusMessage: 'Name and type are required' })
+  }
 
-    const newCourse = await Course.create({
-        title: body.title,
-        description: body.description || '',
-        classrooms: body.classrooms || [],
-        activities: body.activities || [],
-        documents: body.documents || []
-    });
+  const newContent = await Content.create({
+    name: body.name,
+    description: body.description || '',
+    type: body.type,
+    relatedContents: body.relatedContents || [],
+    data: body.data || []
+  })
 
-    return {
-        message: 'Course created successfully',
-        course: newCourse
-    };
-});
+  return {
+    message: 'Content created successfully',
+    content: newContent
+  }
+})
 
 /**
- * Update a course by ID
+ * Update a content item by ID
  */
-export const updateCourse = defineEventHandler(async (event) => {
-    const { id } = getQuery(event);
-    const body = await readBody(event);
+export const updateContent = defineEventHandler(async (event) => {
+  const { id } = getQuery(event)
+  const body = await readBody(event)
 
-    const updatedCourse = await Course.findByIdAndUpdate(id, body, { new: true })
-        .populate('classrooms')
-        .populate('activities');
+  const updatedContent = await Content.findByIdAndUpdate(id, body, { new: true }).populate('relatedContents')
 
-    if (!updatedCourse) {
-        throw createError({ statusCode: 404, statusMessage: 'Course not found' });
-    }
+  if (!updatedContent) {
+    throw createError({ statusCode: 404, statusMessage: 'Content not found' })
+  }
 
-    return {
-        message: 'Course updated successfully',
-        course: updatedCourse
-    };
-});
+  return {
+    message: 'Content updated successfully',
+    content: updatedContent
+  }
+})
 
 /**
- * Delete a course by ID
+ * Delete a content item by ID
  */
-export const deleteCourse = defineEventHandler(async (event) => {
-    const { id } = getQuery(event);
+export const deleteContent = defineEventHandler(async (event) => {
+  const { id } = getQuery(event)
 
-    const deletedCourse = await Course.findByIdAndDelete(id);
+  const deletedContent = await Content.findByIdAndDelete(id)
 
-    if (!deletedCourse) {
-        throw createError({ statusCode: 404, statusMessage: 'Course not found' });
-    }
+  if (!deletedContent) {
+    throw createError({ statusCode: 404, statusMessage: 'Content not found' })
+  }
 
-    return { message: 'Course deleted successfully' };
-});
+  return { message: 'Content deleted successfully' }
+})
