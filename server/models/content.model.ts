@@ -15,4 +15,4 @@ const contentSchema = new mongoose.Schema({
 
 contentSchema.index({ title: 1 });
 
-export default mongoose.model('Course', contentSchema);
+export default mongoose.model('Content', contentSchema);

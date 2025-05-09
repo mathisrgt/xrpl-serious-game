@@ -13,7 +13,8 @@ export const getAllContents = defineEventHandler(async () => {
  * Get a specific content by ID
  */
 export const getContentById = defineEventHandler(async (event) => {
-  const { id } = getQuery(event)
+  // const { id } = getQuery(event)
+  const id = event.context.params?.id;
 
   const content = await Content.findById(id).populate('relatedContents')
 

@@ -2,7 +2,7 @@
   <div class="p-10 mx-auto space-y-6 w-2/3 min-h-screen">
     <h1 class="text-2xl font-bold">New content</h1>
 
-    <UForm :state="form" @submit="handleSubmit" class="space-y-6">
+    <UForm :state="form" @submit="submitContent" class="space-y-6">
       <div>
         <UFormGroup class="space-y-2">
 
@@ -64,7 +64,8 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-const router = useRouter()
+const router = useRouter();
+const loading = ref(false);
 
 const contentTypes = ref(['qcm', 'onchain', 'lesson', 'document'])
 const sectionTypes = ref(['title', 'body', 'link', 'code'])
