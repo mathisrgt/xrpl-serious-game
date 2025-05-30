@@ -53,7 +53,7 @@ const submitActivity = async () => {
 
         if (!response.ok) throw new Error('Failed to create activity');
 
-        const newActivity = await response.json();
+        const newActivity = await response.json();  
         emit('activityCreated', newActivity);
         isModalOpen.value = false;
         activity.value = { content: '' };

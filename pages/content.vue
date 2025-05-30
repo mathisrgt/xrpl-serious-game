@@ -51,7 +51,7 @@
 
         <div class="space-x-2">
           <UButton @click="addSection" variant="soft">Add</UButton>
-          <UButton type="submit" class="mt-4" :disabled="form.data.length === 0 || !form.name || !form.type">
+          <UButton type="submit" class="mt-4" :disabled="form.data.length === 0 || !form.name || !form.type" @click="handleSubmit">
             Save
           </UButton>
         </div>
@@ -74,7 +74,7 @@ const form = ref({
   name: '',
   description: '',
   type: '',
-  data: [] // Will be stored as JSON
+  data: []
 })
 
 function addSection() {

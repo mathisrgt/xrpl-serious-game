@@ -1,10 +1,5 @@
 import { Types } from 'mongoose';
-
-export interface WalletInfo {
-  userId: Types.ObjectId;
-  pubkey: string;
-  privkey: string;
-}
+import type { Wallet } from './wallet.type';
 
 export interface GradeInfo {
   userId: Types.ObjectId;
@@ -22,7 +17,7 @@ export interface Activity {
   _id?: Types.ObjectId;
   content: Types.ObjectId;
   classroom: Types.ObjectId;
-  wallets: WalletInfo[];
+  wallets: Wallet[];
   grades: GradeInfo[];
   status: StatusInfo[];
   metaData: Record<string, any>;
