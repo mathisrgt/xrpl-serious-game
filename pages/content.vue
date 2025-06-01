@@ -46,7 +46,38 @@
           <UTextarea v-else-if="section.type === 'body'" v-model="section.value" placeholder="Enter text body" />
           <UInput v-else-if="section.type === 'link'" v-model="section.value" placeholder="Enter URL" />
           <UTextarea v-else-if="section.type === 'code'" v-model="section.value" placeholder="Enter code"
-            color="neutral" variant="outline" :highlight="true" />
+            color="neutral" variant="outline" :highlight="true" 
+          />
+          <div v-else-if="section.type === 'question'" class="space-y-2">
+  <UInput
+    v-model="section.value"
+    placeholder="Enter the question prompt"
+    class="w-full"
+  />
+
+  <div v-for="(answer, i) in section.answers" :key="i" class="flex items-center gap-2">
+    <UCheckbox
+      v-model="section.correctAnswers[i]"
+      :value="i"
+    />
+    <UInput
+      v-model="section.answers[i]"
+      placeholder="Answer option"
+      class="flex-1"
+    />
+    <UButton icon="i-lucide-x" variant="ghost" size="xs" color="red" @click="section.answers.splice(i, 1)" v-if="section.answers.length >= 2" />
+  </div>
+
+  <UButton
+    label="Add Answer"
+    variant="soft"
+    size="xs"
+    class="mt-2"
+    :disabled="section.answers.length >= 5"
+    @click="section.answers.push('')"
+  />
+  <p class="text-xs text-gray-500">You must add at least 2 answers and select at least 1 correct answer.</p>
+</div>      
         </div>
 
         <div class="space-x-2">
@@ -68,7 +99,7 @@ const router = useRouter();
 const loading = ref(false);
 
 const contentTypes = ref(['qcm', 'onchain', 'lesson', 'document'])
-const sectionTypes = ref(['title', 'body', 'link', 'code'])
+const sectionTypes = ref(['title', 'body', 'link', 'code', 'question'])
 
 const form = ref({
   name: '',
@@ -78,7 +109,11 @@ const form = ref({
 })
 
 function addSection() {
-  form.value.data.push({ type: 'title', value: '' })
+  form.value.data.push({ 
+    type: 'title', 
+    value: '',
+  answers: [],
+    correctAnswers: [] })
 }
 
 function removeSection(index) {
@@ -86,6 +121,18 @@ function removeSection(index) {
 }
 
 async function handleSubmit() {
+  const valid = form.value.data.every(section => {
+  if (section.type === 'question') {
+    return section.answers.length >= 2 && section.correctAnswers.length >= 1
+  }
+  return true
+})
+
+if (!valid) {
+  alert('Each question must have at least 2 answers and 1 correct answer.')
+  return
+}
+
   try {
     await $fetch('/api/content', {
       method: 'POST',

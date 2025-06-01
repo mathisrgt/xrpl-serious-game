@@ -1,9 +1,24 @@
 import { Types } from 'mongoose';
 import type { Wallet } from "./wallet.type";
 
-export type ContentType = 'qcm' | 'onchain' | 'lesson' | 'document';
 
-export type ContentSectionType = 'title' | 'body' | 'link' | 'code';
+export enum ContentTypeEnum {
+  QCM = 'qcm',
+  ONCHAIN = 'onchain',
+  LESSON = 'lesson',
+  DOCUMENT = 'document'
+}
+type ContentType = `${ContentTypeEnum}`
+
+export enum ContentSectionTypeEnum {
+  TITLE = 'title',
+  BODY = 'body',
+  LINK = 'link',
+  CODE = 'code',
+  QUESTION = 'question'
+}
+type ContentSectionType = `${ContentSectionTypeEnum}`
+
 
 export interface ContentSection {
   type: ContentSectionType;
