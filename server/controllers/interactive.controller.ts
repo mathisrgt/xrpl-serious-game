@@ -18,9 +18,9 @@ export const generate = defineEventHandler(async (event) => {
   let content: Content
   try {
     const response = await $fetch(
-      `/api/content?id=${body.contentId}`
+      `/api/content/${body.contentId}`
     )
-    content = response[0] as Content
+    content = response as Content
   } catch (err) {
     console.error('❌ Failed to fetch content:', err)
     throw createError({ statusCode: 500, statusMessage: 'Could not fetch content' })

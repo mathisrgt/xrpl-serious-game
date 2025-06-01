@@ -16,6 +16,10 @@ export const getContentById = defineEventHandler(async (event) => {
   // const { id } = getQuery(event)
   const id = event.context.params?.id;
 
+  if (!id) {
+    throw createError({ statusCode: 400, statusMessage: 'Id is required' })
+  }
+
   const content = await Content.findById(id).populate('relatedContents')
 
   if (!content) {
